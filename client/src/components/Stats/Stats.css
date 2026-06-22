@@ -1,0 +1,468 @@
+/* Stats CSS - Complete with Responsive Design */
+
+.stats-section {
+  background: var(--ink);
+  padding: 80px 2rem;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Section Header */
+.section-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+  display: block;
+  font-family: 'Outfit', sans-serif;
+}
+
+.section-h {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 46px;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 48px;
+  line-height: 1.05;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Individual Stat Box */
+.stat-box {
+  background: var(--card);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 36px 28px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Remove right border from last item in each row */
+.stat-box:nth-child(4n) {
+  border-right: none;
+}
+
+/* Remove bottom border from last row */
+.stat-box:nth-last-child(-n + 4) {
+  border-bottom: none;
+}
+
+/* Hover Effect */
+.stat-box:hover {
+  background: var(--card2);
+  transform: translateY(-4px);
+}
+
+/* Background glow on hover */
+.stat-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(198, 241, 53, 0.05), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+
+.stat-box:hover::before {
+  opacity: 1;
+}
+
+/* Stat Number */
+.stat-box__number {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 42px;
+  color: var(--lime);
+  letter-spacing: -2px;
+  line-height: 1;
+  display: block;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Stat Label */
+.stat-box__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 12px;
+  font-family: 'Outfit', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+/* Stat Trend */
+.stat-box__trend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.42);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-box__trend span:first-child {
+  font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+/* Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stat-box__number {
+    font-size: 48px;
+  }
+}
+
+/* Desktop (1200px - 1400px) */
+@media (max-width: 1399px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stat-box {
+    padding: 32px 24px;
+  }
+
+  .stat-box__number {
+    font-size: 40px;
+  }
+
+  .stat-box__label {
+    font-size: 13px;
+  }
+}
+
+/* Tablet Large (900px - 1199px) */
+@media (max-width: 1199px) {
+  .stats-section {
+    padding: 60px 2rem;
+  }
+
+  .section-h {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-box {
+    padding: 30px 22px;
+  }
+
+  .stat-box:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stat-box:nth-child(2n+1) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat-box:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .stat-box__number {
+    font-size: 36px;
+  }
+}
+
+/* Tablet (768px - 899px) */
+@media (max-width: 899px) {
+  .stats-section {
+    padding: 50px 1.5rem;
+  }
+
+  .section-inner {
+    margin: 0 auto;
+  }
+
+  .section-h {
+    font-size: 36px;
+    margin-bottom: 36px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 16px;
+  }
+
+  .stat-box {
+    padding: 28px 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat-box:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stat-box__number {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .stat-box__label {
+    font-size: 12px;
+  }
+
+  .stat-box__trend {
+    font-size: 11px;
+  }
+}
+
+/* Small Tablet (600px - 767px) */
+@media (max-width: 767px) {
+  .stats-section {
+    padding: 40px 1.5rem;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+
+  .section-h {
+    font-size: 32px;
+    letter-spacing: -1.5px;
+    margin-bottom: 32px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    border-radius: 14px;
+  }
+
+  .stat-box {
+    padding: 26px 20px;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .stat-box:last-child {
+    border-bottom: none !important;
+  }
+
+  .stat-box__number {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .stat-box__label {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .stat-box__trend {
+    font-size: 11px;
+  }
+}
+
+/* Mobile (480px - 599px) */
+@media (max-width: 599px) {
+  .stats-section {
+    padding: 32px 1rem;
+  }
+
+  .section-inner {
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+  }
+
+  .section-h {
+    font-size: 28px;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-radius: 12px;
+  }
+
+  .stat-box {
+    padding: 22px 16px;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .stat-box:last-child {
+    border-bottom: none !important;
+  }
+
+  .stat-box:hover {
+    transform: translateY(-2px);
+  }
+
+  .stat-box__number {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .stat-box__label {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .stat-box__trend {
+    font-size: 10px;
+    gap: 5px;
+  }
+
+  .stat-box__trend span:first-child {
+    font-size: 12px;
+  }
+}
+
+/* Extra Small Mobile (320px - 479px) */
+@media (max-width: 479px) {
+  .stats-section {
+    padding: 24px 0.75rem;
+  }
+
+  .section-tag {
+    font-size: 8px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .section-h {
+    font-size: 24px;
+    letter-spacing: -0.8px;
+    margin-bottom: 24px;
+  }
+
+  .stats-grid {
+    border-radius: 10px;
+  }
+
+  .stat-box {
+    padding: 18px 12px;
+  }
+
+  .stat-box__number {
+    font-size: 24px;
+    margin-bottom: 6px;
+    letter-spacing: -1px;
+  }
+
+  .stat-box__label {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+
+  .stat-box__trend {
+    font-size: 9px;
+  }
+
+  .stat-box__trend span:first-child {
+    font-size: 11px;
+  }
+}
+
+/* Landscape Mobile (320px - 599px height) */
+@media (max-width: 899px) and (max-height: 600px) {
+  .stats-section {
+    padding: 40px 1rem;
+  }
+
+  .section-h {
+    margin-bottom: 24px;
+  }
+
+  .stat-box {
+    padding: 20px 16px;
+  }
+
+  .stat-box__number {
+    margin-bottom: 8px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .stats-section {
+    background: white;
+    color: black;
+  }
+
+  .section-tag {
+    color: #666;
+  }
+
+  .section-h {
+    color: black;
+  }
+
+  .stat-box {
+    background: white;
+    border: 1px solid #ddd;
+    color: black;
+  }
+
+  .stat-box__number {
+    color: #333;
+  }
+
+  .stat-box__label,
+  .stat-box__trend {
+    color: #666;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .stat-box {
+    transition: none;
+  }
+
+  .stat-box::before {
+    transition: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .stat-box {
+    background: var(--card);
+  }
+
+  .stat-box:hover {
+    background: var(--card2);
+  }
+}

@@ -1,0 +1,65 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  width: 400px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 16px;
+  padding: 30px;
+  position: relative;
+}
+
+.modal-box h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.modal-box input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: white;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #c6ff1a;
+  color: black;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.switch-text {
+  margin-top: 15px;
+  color: #aaa;
+  text-align: center;
+}
+
+.switch-text span {
+  color: #c6ff1a;
+  cursor: pointer;
+}

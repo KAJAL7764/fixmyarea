@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #050505;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  background: #000;
+  border-bottom: 1px solid #1f1f1f;
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-box {
+  width: 38px;
+  height: 38px;
+  background: #c8ff32;
+  border-radius: 10px;
+}
+
+.logo-text {
+  color: white;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.logo-text span {
+  color: #c8ff32;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #cfcfcf;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-links .active {
+  background: rgba(200, 255, 50, 0.1);
+  color: #c8ff32;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.signin-btn {
+  padding: 10px 20px;
+  border: 1px solid #2c2c2c;
+  background: #111;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  border-color: #c8ff32;
+}
+
+.report-btn {
+  padding: 10px 20px;
+  border: none;
+  background: #c8ff32;
+  color: black;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.report-btn:hover {
+  transform: scale(1.05);
+}
+
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  width: 28px;
+  height: 3px;
+  background: white;
+  border-radius: 5px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+
+  .navbar-container {
+    width: 95%;
+  }
+
+  .menu-icon {
+    display: flex;
+    z-index: 2000;
+  }
+
+  /* MOBILE MENU */
+
+  .nav-links {
+    position: absolute;
+    top: 75px;
+    left: -100%;
+    width: 100%;
+    background: #000;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 25px;
+    gap: 22px;
+    transition: 0.4s ease;
+    border-top: 1px solid #1f1f1f;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .nav-links .active {
+    padding: 10px 14px;
+  }
+
+  /* MOBILE BUTTONS */
+
+  .nav-buttons {
+    position: absolute;
+    top: 420px;
+    left: -100%;
+    width: 100%;
+    background: #000;
+    flex-direction: column;
+    padding: 20px 25px 30px;
+    gap: 14px;
+    transition: 0.4s ease;
+  }
+
+  .nav-buttons.active {
+    left: 0;
+  }
+
+  .signin-btn,
+  .report-btn {
+    width: 100%;
+  }
+
+  .logo-text {
+    font-size: 24px;
+  }
+
+  /* HAMBURGER ANIMATION */
+
+  .menu-icon span {
+    transition: 0.3s;
+  }
+
+  .menu-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(11px);
+  }
+
+  .menu-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-11px);
+  }
+}
+
+/* EXTRA SMALL DEVICES */
+
+@media (max-width: 480px) {
+
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .logo-box {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .nav-links {
+    top: 68px;
+    padding: 25px 20px;
+  }
+
+  .nav-buttons {
+    top: 390px;
+    padding: 20px;
+  }
+
+  .signin-btn,
+  .report-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
