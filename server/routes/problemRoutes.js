@@ -1,21 +1,29 @@
 import express from "express";
-
 import {
   createProblem,
   getProblems,
   getMyProblems,
+  getProblemById,
   upvoteProblem,
-    updateProblemStatus,
+  updateProblemStatus,
+  deleteProblem,
+  updateProblem
 } from "../controllers/problemController.js";
-
 import { protect } from "../middleware/authMiddleware.js";
+import upload from "../middleware/uploadMiddleware.js";
 
-const router = express.Router();
+
+
+
+export const router = express.Router();
+
 
 router.get("/", getProblems);
 router.get("/my", protect, getMyProblems);
-router.post("/", protect, createProblem);
-router.patch("/:id/upvote", upvoteProblem);
+router.get("/:id", getProblemById);
+router.post("/", protect,   upload.single("image"),createProblem);
+router.patch("/:id", protect, upload.single("image"),updateProblem);
+router.patch("/:id/upvote", protect, upvoteProblem);
 router.patch("/:id/status", updateProblemStatus);
-
+router.delete("/:id", protect, deleteProblem);
 export default router;

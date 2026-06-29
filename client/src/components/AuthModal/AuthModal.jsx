@@ -1,58 +1,7 @@
-// import "./AuthModal.css";
-// import { useState } from "react";
-
-// export default function AuthModal({ onClose }) {
-//   const [isLogin, setIsLogin] = useState(true);
-
-//   return (
-//     <div className="modal-overlay">
-//       <div className="modal-box">
-
-//         <button className="close-btn" onClick={onClose}>
-//           ✕
-//         </button>
-
-//         <h2>{isLogin ? "Welcome Back" : "Create Account"}</h2>
-
-//         {!isLogin && (
-//           <input type="text" placeholder="Full Name" />
-//         )}
-
-//         <input type="email" placeholder="Email" />
-//         <input type="password" placeholder="Password" />
-
-//         {!isLogin && (
-//           <input
-//             type="password"
-//             placeholder="Confirm Password"
-//           />
-//         )}
-
-//         <button className="submit-btn">
-//           {isLogin ? "Sign In" : "Sign Up"}
-//         </button>
-
-//         <p className="switch-text">
-//           {isLogin
-//             ? "Don't have an account?"
-//             : "Already have an account?"}
-
-//           <span
-//             onClick={() => setIsLogin(!isLogin)}
-//           >
-//             {isLogin ? " Sign Up" : " Sign In"}
-//           </span>
-//         </p>
-
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import "./AuthModal.css";
 import { useState } from "react";
 import api from "../../api/axios";
+import { useToast } from "../../context/ToastContext";
 
 export default function AuthModal({ onClose }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -62,63 +11,82 @@ export default function AuthModal({ onClose }) {
     useState("");
   const [password, setPassword] =
     useState("");
+    const { showToast } = useToast();
   const [
     confirmPassword,
     setConfirmPassword,
   ] = useState("");
 
   const handleSubmit = async () => {
-    try {
+  try {
 
-      if (!isLogin) {
-        if (password !== confirmPassword) {
-          return alert(
-            "Passwords do not match"
-          );
-        }
+    if (!isLogin) {
 
-        const res = await api.post(
-          "/auth/register",
-          {
-            name,
-            email,
-            password,
-          }
+      if (password !== confirmPassword) {
+        showToast(
+          "Passwords do not match",
+          "error"
         );
-
-        alert(
-          res.data.message ||
-            "Account created successfully"
-        );
-
-        setIsLogin(true);
         return;
       }
 
       const res = await api.post(
-        "/auth/login",
+        "/auth/register",
         {
+          name,
           email,
           password,
         }
       );
 
-      localStorage.setItem(
-  "token",
-  res.data.token
-);
-
-alert("Login Successful");
-
-window.location.reload();
-
-    } catch (error) {
-      alert(
-        error.response?.data?.message ||
-          "Something went wrong"
+      showToast(
+        res.data.message ||
+        "Account created successfully",
+        "success"
       );
+
+      setIsLogin(true);
+      return;
     }
-  };
+
+    // Login
+    const res = await api.post(
+      "/auth/login",
+      {
+        email,
+        password,
+      }
+    );
+
+    localStorage.setItem(
+      "token",
+      res.data.token
+    );
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify(res.data.user)
+    );
+
+    showToast(
+      "Login Successful",
+      "success"
+    );
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+
+  } catch (error) {
+
+    showToast(
+      error.response?.data?.message ||
+      "Something went wrong",
+      "error"
+    );
+
+  }
+};
 
   return (
     <div className="modal-overlay">

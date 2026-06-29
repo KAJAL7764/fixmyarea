@@ -1,12 +1,13 @@
 import { useState } from "react";
 import api from "../../api/axios";
+import { useToast } from "../../context/ToastContext";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] =
     useState("");
-
+const { showToast } = useToast();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -20,14 +21,18 @@ function Register() {
         }
       );
 
-      alert(res.data.message);
-    } catch (err) {
-      alert(
-        err.response?.data?.message
-      );
-    }
-  };
+   showToast(
+  res.data.message,
+  "success"
+);
 
+} catch (err) {
+  showToast(
+    err.response?.data?.message ||
+    "Something went wrong",
+    "error"
+  );
+}
   return (
     <form onSubmit={handleSubmit}>
       <input
