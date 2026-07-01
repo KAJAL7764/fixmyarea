@@ -5,6 +5,8 @@ import connectDB from "./config/db.js";
 import problemRoutes from "./routes/problemRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import leaderboardRoutes from "./routes/leaderboardRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 dotenv.config();
 
@@ -27,6 +29,8 @@ console.log("JWT:", process.env.JWT_SECRET);
 app.use("/api/auth", authRoutes);
 
 app.use("/api/admin", adminRoutes);
+app.use("/api/leaderboard", leaderboardRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 const PORT = process.env.PORT || 5000;
 

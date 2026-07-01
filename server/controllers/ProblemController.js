@@ -195,44 +195,6 @@ export const upvoteProblem = async (req, res) => {
   }
 };
 
-export const updateProblemStatus = async (req, res) => {
-  try {
-    const { status } = req.body;
-
-    // ✅ Validation goes here
-    const allowedStatuses = ["reported", "in-progress", "resolved"];
-
-    if (!allowedStatuses.includes(status)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid status",
-      });
-    }
-
-    const problem = await Problem.findByIdAndUpdate(
-      req.params.id,
-      { status },
-      { new: true },
-    );
-
-    if (!problem) {
-      return res.status(404).json({
-        success: false,
-        message: "Problem not found",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      problem,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
 
 export const getAllProblemsAdmin = async (req, res) => {
   try {
@@ -266,16 +228,16 @@ export const deleteProblem = async (req, res) => {
       });
     }
 
-    // Check ownership
-    if (
-      problem.reportedBy.toString() !==
-      req.user.id
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: "You are not authorized to delete this issue",
-      });
-    }
+   // Allow if owner OR admin
+if (
+  problem.reportedBy.toString() !== req.user.id &&
+  req.user.role !== "admin"
+) {
+  return res.status(403).json({
+    success: false,
+    message: "You are not authorized to delete this issue",
+  });
+}
 
     await problem.deleteOne();
 
@@ -303,16 +265,16 @@ export const updateProblem = async (req, res) => {
       });
     }
 
-    // Owner check
-    if (
-      problem.reportedBy.toString() !==
-      req.user.id
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: "You are not authorized to edit this issue",
-      });
-    }
+   // Allow if owner OR admin
+if (
+  problem.reportedBy.toString() !== req.user.id &&
+  req.user.role !== "admin"
+) {
+  return res.status(403).json({
+    success: false,
+    message: "You are not authorized to edit this issue",
+  });
+}
 
     const {
       title,
@@ -320,9 +282,9 @@ export const updateProblem = async (req, res) => {
       category,
     } = req.body;
 
-    problem.title = title;
-    problem.description = description;
-    problem.category = category;
+   problem.title = title || problem.title;
+problem.description = description || problem.description;
+problem.category = category || problem.category;
 
     await problem.save();
 
@@ -337,5 +299,62 @@ export const updateProblem = async (req, res) => {
       success: false,
       message: error.message,
     });
+  }
+};
+
+export const updateProblemStatus = async (
+  req,
+  res
+) => {
+  try {
+
+    const { status } = req.body;
+
+    const allowedStatus = [
+      "open",
+      "inprogress",
+      "resolved",
+    ];
+
+    if (
+      !allowedStatus.includes(status)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid status",
+      });
+    }
+
+    const problem =
+      await Problem.findById(
+        req.params.id
+      );
+
+    if (!problem) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Problem not found",
+      });
+    }
+
+    problem.status = status;
+
+    await problem.save();
+
+    res.status(200).json({
+      success: true,
+      message:
+        "Status updated successfully",
+      problem,
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+
   }
 };

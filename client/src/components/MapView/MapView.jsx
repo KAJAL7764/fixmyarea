@@ -8,17 +8,22 @@ import {
 
 function LocationMarker({
   selectedPosition,
-  setSelectedPosition
+  setSelectedPosition,
+  selectable
 }) {
 
-  useMapEvents({
-    click(e) {
-      setSelectedPosition({
-        lat: e.latlng.lat,
-        lng: e.latlng.lng
-      });
-    }
-  });
+useMapEvents({
+  click(e) {
+
+    if (!selectable) return;
+
+    setSelectedPosition({
+      lat: e.latlng.lat,
+      lng: e.latlng.lng
+    });
+
+  }
+});
 
   return (
     <Marker
@@ -37,7 +42,8 @@ function LocationMarker({
 const MapView = ({
   problems,
   selectedPosition,
-  setSelectedPosition
+  setSelectedPosition,
+  selectable = true,
 }) => {
 
   return (
@@ -60,15 +66,13 @@ const MapView = ({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <LocationMarker
-        selectedPosition={
-          selectedPosition
-        }
-
-        setSelectedPosition={
-          setSelectedPosition
-        }
-      />
+    {selectable && (
+  <LocationMarker
+    selectedPosition={selectedPosition}
+    setSelectedPosition={setSelectedPosition}
+    selectable={selectable}
+  />
+)}
 
       {problems.map(problem => (
         <Marker

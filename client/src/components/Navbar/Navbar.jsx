@@ -14,6 +14,9 @@ export default function Navbar() {
 
   const token =
     localStorage.getItem("token");
+    const user = JSON.parse(
+  localStorage.getItem("user")
+);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -82,8 +85,20 @@ export default function Navbar() {
               Leaderboard
             </Link>
           </li>
+<li>
+  <Link to="/dashboard">
+    Dashboard
+  </Link>
+</li>
 
-          <li>
+{user?.role === "admin" && (
+  <li>
+    <Link to="/admin">
+      Admin Panel
+    </Link>
+  </li>
+)}
+          {/* <li>
             <Link
               to="/dashboard"
               onClick={() =>
@@ -92,7 +107,7 @@ export default function Navbar() {
             >
               Dashboard
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         {/* Buttons */}

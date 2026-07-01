@@ -74,7 +74,7 @@ export default function IssueDetails() {
 );
 
 setTimeout(() => {
-  navigate("/myissues");
+  navigate("/issues");
 }, 1000);
 
 } catch (error) {

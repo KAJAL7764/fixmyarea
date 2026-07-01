@@ -7,10 +7,11 @@ import {
   upvoteProblem,
   updateProblemStatus,
   deleteProblem,
-  updateProblem
+  updateProblem,
 } from "../controllers/problemController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import upload from "../middleware/uploadMiddleware.js";
+import { isAdmin } from "../middleware/adminMiddleware.js";
 
 
 
@@ -24,6 +25,6 @@ router.get("/:id", getProblemById);
 router.post("/", protect,   upload.single("image"),createProblem);
 router.patch("/:id", protect, upload.single("image"),updateProblem);
 router.patch("/:id/upvote", protect, upvoteProblem);
-router.patch("/:id/status", updateProblemStatus);
+router.patch("/:id/status", protect, isAdmin, updateProblemStatus);
 router.delete("/:id", protect, deleteProblem);
 export default router;

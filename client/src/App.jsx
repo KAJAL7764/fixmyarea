@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import LiveMap from "./pages/LiveMap/LiveMap";
 import Issues from "./pages/Issues/Issues";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 // Home Components
 import Hero from "./components/Hero/Hero";
@@ -23,6 +24,10 @@ import Footer from "./components/Footer/Footer";
 import Report from "./pages/Report/Report";
 import IssueDetails
 from "./pages/IssueDetails/IssueDetails";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AuthRequired from "./pages/AuthRequired/AuthRequired";
+
+
 
 function Home() {
   return (
@@ -48,13 +53,18 @@ function App() {
         <Route path="/" element={<Home />} />
 
         {/* Other Pages */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/map" element={<LiveMap />} />
-        <Route path="/issues" element={<Issues />} />
-        <Route
-  path="/report"
-  element={<Report />}
+        <Route path="/issues" element={ <ProtectedRoute><Issues /></ProtectedRoute>} />
+        <Route path="/report" element={  <ProtectedRoute><Report /></ProtectedRoute>}
 />
 <Route
   path="/issues/:id"
@@ -64,6 +74,15 @@ function App() {
   path="/issues/edit/:id"
   element={<ReportForm />}
 />
+<Route
+  path="/admin"
+  element={<AdminDashboard />}
+/>
+<Route
+  path="/login-required"
+  element={<AuthRequired />}
+/>
+
       </Routes>
     </BrowserRouter>
   );

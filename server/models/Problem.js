@@ -47,7 +47,7 @@ const problemSchema = new mongoose.Schema(
       type: String,
       enum: [
         "reported",
-        "in-progress",
+        "inprogress",
         "resolved",
       ],
       default: "reported",

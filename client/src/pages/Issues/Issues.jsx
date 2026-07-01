@@ -12,6 +12,7 @@ export default function MyIssues() {
   const [search, setSearch] = useState("");
   const [category, setCategory] =
   useState("All");
+  const [sortBy, setSortBy] = useState("newest");
 
   useEffect(() => {
     fetchIssues();
@@ -73,13 +74,12 @@ export default function MyIssues() {
     );
   }
 
-const filteredIssues = issues.filter(
-  (issue) => {
+const filteredIssues = issues
+  .filter((issue) => {
     const matchesSearch =
       issue.title
         .toLowerCase()
         .includes(search.toLowerCase()) ||
-
       issue.description
         .toLowerCase()
         .includes(search.toLowerCase());
@@ -92,8 +92,25 @@ const filteredIssues = issues.filter(
       matchesSearch &&
       matchesCategory
     );
-  }
-);
+  })
+  .sort((a, b) => {
+
+    if (sortBy === "upvotes") {
+      return b.upvotes - a.upvotes;
+    }
+
+    if (sortBy === "oldest") {
+      return (
+        new Date(a.createdAt) -
+        new Date(b.createdAt)
+      );
+    }
+
+    return (
+      new Date(b.createdAt) -
+      new Date(a.createdAt)
+    );
+  });
 
   return (
     <section className="issues-section">
@@ -102,9 +119,13 @@ const filteredIssues = issues.filter(
         <div className="issues-header">
           <h1>All Issues</h1>
           <p className="issues-subtitle">
-            {issues.length} {issues.length === 1 ? "issue" : "issues"} reported
+            {filteredIssues.length} {filteredIssues.length === 1 ? "issue" : "issues"} reported
           </p>
-            <div className="search-box">
+        </div>
+
+      <div className="controls">
+
+  <div className="search-box">
     <input
       type="text"
       placeholder="🔍 Search issues..."
@@ -113,34 +134,54 @@ const filteredIssues = issues.filter(
         setSearch(e.target.value)
       }
     />
-  
+  </div>
+
+  <div className="filter-box">
+    <select
+      value={category}
+      onChange={(e) =>
+        setCategory(e.target.value)
+      }
+    >
+      <option value="All">All Categories</option>
+      <option value="Pothole">Pothole</option>
+      <option value="Garbage">Garbage</option>
+      <option value="Water leak">Water leak</option>
+      <option value="Broken light">Broken light</option>
+      <option value="Traffic">Traffic</option>
+      <option value="Drainage">Drainage</option>
+    </select>
+  </div>
+
+  <div className="sort-box">
+    <select
+      value={sortBy}
+      onChange={(e) =>
+        setSortBy(e.target.value)
+      }
+    >
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+      <option value="upvotes">Most Upvoted</option>
+    </select>
+  </div>
+
 </div>
-        </div>
-<div className="filter-box">
-  <select
-    value={category}
-    onChange={(e) =>
-      setCategory(e.target.value)
-    }
-  >
-    <option value="All">All Categories</option>
-    <option value="Pothole">Pothole</option>
-    <option value="Garbage">Garbage</option>
-    <option value="Water leak">Water leak</option>
-    <option value="Broken light">Broken light</option>
-    <option value="Traffic">Traffic</option>
-    <option value="Drainage">Drainage</option>
-  </select>
-</div>
+
+
         {/* Empty State */}
-        {issues.length === 0 ? (
-          <div className="empty-state">
-            <p className="empty-icon">📭</p>
-            <p className="empty-text">No issues found yet</p>
-            <p className="empty-subtext">
-              Be the first to report an issue in your city!
-            </p>
-          </div>
+        {filteredIssues.length === 0 ? (
+         <div className="empty-state">
+  <p className="empty-icon">🔍</p>
+
+  <p className="empty-text">
+    No matching issues found
+  </p>
+
+  <p className="empty-subtext">
+    Try another search or category.
+  </p>
+</div>
         ) : (
           /* Issues List */
           <div className="issues-list">
@@ -192,5 +233,6 @@ const filteredIssues = issues.filter(
         )}
       </div>
     </section>
+    
   );
 }

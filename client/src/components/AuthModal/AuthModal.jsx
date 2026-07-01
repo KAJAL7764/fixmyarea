@@ -2,8 +2,10 @@ import "./AuthModal.css";
 import { useState } from "react";
 import api from "../../api/axios";
 import { useToast } from "../../context/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthModal({ onClose }) {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
 
   const [name, setName] = useState("");
@@ -18,6 +20,7 @@ export default function AuthModal({ onClose }) {
   ] = useState("");
 
   const handleSubmit = async () => {
+    console.log("login button clicked");
   try {
 
     if (!isLogin) {
@@ -57,6 +60,7 @@ export default function AuthModal({ onClose }) {
         password,
       }
     );
+    console.log("Login Response:", res.data);
 
     localStorage.setItem(
       "token",
@@ -73,9 +77,10 @@ export default function AuthModal({ onClose }) {
       "success"
     );
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+  setTimeout(() => {
+  onClose();      // closes the login modal
+  navigate("/");  // goes to Home page
+}, 1000);
 
   } catch (error) {
 
