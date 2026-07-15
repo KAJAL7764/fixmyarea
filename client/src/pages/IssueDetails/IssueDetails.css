@@ -1,5 +1,5 @@
 .issue-details-page {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 40px 20px;
   background: #0a0a0a;
 }
@@ -115,24 +115,291 @@
   font-size: 1.1rem;
 }
 
-@media (max-width: 768px) {
-  .issue-details-page {
-    padding: 20px 15px;
-  }
+@media (max-width:768px){
 
-  .issue-banner {
-    height: 250px;
-  }
+.issue-details-page{
+    padding:15px 10px;
+}
 
-  .issue-content {
-    padding: 20px;
-  }
+.issue-content{
+    padding:18px;
+}
 
-  .issue-title {
-    font-size: 1.5rem;
-  }
+.issue-banner{
+    height:220px;
+}
 
-  .issue-meta-grid {
-    grid-template-columns: 1fr;
-  }
+.issue-title{
+    font-size:1.4rem;
+}
+
+.issue-description{
+    font-size:15px;
+    line-height:1.6;
+}
+
+.issue-meta-grid{
+    grid-template-columns:1fr;
+}
+
+.comments-section{
+    padding:18px;
+}
+
+.comments-section h2{
+    font-size:26px;
+}
+
+.comment-input textarea{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.comment-input button{
+    width:100%;
+}
+
+.comment-card{
+    padding:15px;
+}
+
+.comment-card h4{
+    font-size:18px;
+}
+
+.comment-card p{
+    word-break:break-word;
+}
+
+.comment-card textarea{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.comment-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.comment-actions button{
+    min-width:100px;
+    height:42px;
+}
+
+.reply-card{
+    margin-left:10px;
+    width:calc(100% - 10px);
+}
+
+.reply-input textarea{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.reply-input button{
+    width:100%;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+}
+
+/* ================= COMMENTS ================= */
+
+.comments-section{
+    margin-top:40px;
+    background:#121212;
+    padding:30px;
+    border-radius:18px;
+    border:1px solid #242424;
+}
+
+.comments-section h2{
+    color:#fff;
+    margin-bottom:25px;
+    font-size:28px;
+}
+
+.comment-input{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.comment-input textarea{
+    min-height:110px;
+    resize:none;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #333;
+    background:#1b1b1b;
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+.comment-input textarea:focus{
+    border-color:#84ff00;
+}
+
+.comment-input button{
+    width:170px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#84ff00;
+    color:rgb(18, 17, 17);
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.comment-input button:hover{
+    background:#2bff00;
+}
+
+.comments-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.comment-card{
+    background:#181818;
+    border:1px solid #2d2d2d;
+    border-radius:14px;
+    padding:18px;
+    transition:.3s;
+}
+
+.comment-card:hover{
+    border-color:#84ff00;
+}
+
+.comment-card h4,
+.comment-card p{
+    overflow-wrap:anywhere;
+}
+
+.comment-card p{
+    color:#d8d8d8;
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.comment-card small{
+    display:block;
+    color:#888;
+    margin-bottom:12px;
+}
+
+.delete-comment-btn{
+    padding:8px 18px;
+    border:none;
+    border-radius:8px;
+    background:#ef4444;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.delete-comment-btn:hover{
+    background:#dc2626;
+    transform:translateY(-1px);
+}
+
+.comment-actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+}
+
+.edit-comment-btn,
+.save-comment-btn,
+.cancel-comment-btn{
+
+    padding:8px 16px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.edit-comment-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.edit-comment-btn:hover{
+    background:#1d4ed8;
+}
+
+.save-comment-btn{
+    background:#16a34a;
+    color:white;
+}
+
+.save-comment-btn:hover{
+    background:#15803d;
+}
+
+.cancel-comment-btn{
+    background:#6b7280;
+    color:white;
+}
+
+.cancel-comment-btn:hover{
+    background:#4b5563;
+}
+
+.comment-card textarea{
+
+    width:100%;
+
+    min-height:90px;
+
+    margin-top:12px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid #333;
+
+    background:#202020;
+
+    color:white;
+
+    resize:none;
+
+}
+
+.like-comment-btn {
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.like-comment-btn:hover {
+  background: #e5e7eb;
 }

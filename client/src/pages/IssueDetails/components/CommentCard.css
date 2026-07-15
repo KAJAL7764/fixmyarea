@@ -1,0 +1,27 @@
+.reply-list {
+  margin-top: 20px;
+  margin-left: 40px;
+  border-left: 2px solid #c8ff32;
+  padding-left: 18px;
+}
+
+.reply-card {
+  background: #202020;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.reply-card h5 {
+  color: #c8ff32;
+  margin-bottom: 8px;
+}
+
+.reply-card p {
+  color: #fff;
+  margin: 6px 0;
+}
+
+.reply-card small {
+  color: #888;
+}

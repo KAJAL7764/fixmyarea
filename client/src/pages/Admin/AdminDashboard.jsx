@@ -110,12 +110,8 @@ export default function AdminDashboard() {
 
 
 const handleEdit = (issue) => {
-
-  console.log("Edit clicked:", issue);
-
     navigate(`/issues/edit/${issue._id}`);
   };
-
 
   return (
     <section className="admin-page">

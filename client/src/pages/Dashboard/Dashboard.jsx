@@ -47,7 +47,6 @@ if (!token) {
     setRecentReports(res.data.recentReports);
 
   } catch (error) {
-    console.log("Dashboard Error:", error.response);
     console.log(error);
   }
 };

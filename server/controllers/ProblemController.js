@@ -29,8 +29,7 @@ const uploadToCloudinary = (fileBuffer) => {
 
 export const createProblem = async (req, res) => {
   try {
-      console.log("FILE:", req.file);
-    console.log("BODY:", req.body);
+      
        
     const { 
       title, description, category, location } = req.body;

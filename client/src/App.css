@@ -21,10 +21,7 @@ body {
   height: 260px;
 
   background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.55)
-    ),
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
     url("https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=1600&auto=format&fit=crop");
 
   background-size: cover;
@@ -74,8 +71,7 @@ body {
 
   border-radius: 20px;
 
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 
   position: sticky;
   top: 20px;
@@ -86,9 +82,9 @@ body {
 .map-section {
   border-radius: 20px;
   overflow: hidden;
-
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  height: calc(100vh - 170px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .map-section .leaflet-container {
@@ -135,4 +131,20 @@ body {
   .form-section {
     padding: 18px;
   }
+}
+
+@media (max-width:600px){
+
+    .map-section{
+        height:300px;
+    }
+
+    .sidebar{
+        padding:16px;
+    }
+
+    .sidebar-card{
+        padding:14px;
+    }
+
 }

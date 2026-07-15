@@ -7,6 +7,10 @@ import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import leaderboardRoutes from "./routes/leaderboardRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
+import statsRoutes from "./routes/statsRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 
@@ -24,13 +28,17 @@ app.get("/", (req, res) => {
 
 app.use("/api/problems", problemRoutes);
 
-console.log("JWT:", process.env.JWT_SECRET);
-
 app.use("/api/auth", authRoutes);
 
 app.use("/api/admin", adminRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/stats", statsRoutes);
+app.use("/api/payment", paymentRoutes);
+
+
 
 const PORT = process.env.PORT || 5000;
 

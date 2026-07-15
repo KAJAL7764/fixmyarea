@@ -11,8 +11,6 @@
   flex-wrap: wrap;
 }
 
-/* ===== Status Buttons ===== */
-
 .status-buttons {
   display: flex;
   gap: 12px;
@@ -70,133 +68,121 @@
   white-space: nowrap;
 }
 
-/* ===== Responsive ===== */
+/* ===========================
+   Mobile Responsive
+=========================== */
 
-@media (max-width: 900px) {
+@media (max-width:900px){
 
-  .map-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
+    .map-toolbar{
+        flex-direction:column;
+        align-items:stretch;
+        padding:20px;
+        gap:16px;
+    }
 
-  .status-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    .status-buttons{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
 
-  .map-toolbar select {
-    width: 100%;
-  }
+    .status-buttons button{
+        flex:1 1 120px;
+    }
 
-  .live-count {
-    text-align: center;
-  }
+    .map-toolbar select{
+        width:100%;
+    }
 
-}
-/* ===== Layout ===== */
+    .live-count{
+        text-align:center;
+    }
 
+    /* IMPORTANT */
 .map-layout{
-
     display:flex;
-
-    height:calc(100vh - 80px);
-
+    width:100%;
 }
-
-/* ===== Map ===== */
 
 .map-section{
-
     flex:1;
-
+    min-width:0;
 }
 
-/* ===== Sidebar ===== */
+    .map-section{
+        width:100%;
+        height:350px;
+    }
 
-.sidebar{
-
-    width:360px;
-
-    background:#111;
-
-    color:white;
-
-    overflow-y:auto;
-
-    padding:20px;
-
-    border-left:1px solid #222;
+    .sidebar{
+        /* width:100%; */
+        width:360px;
+        border-left:none;
+        border-top:1px solid #222;
+        padding:20px;
+        max-height:none;
+    }
 
 }
 
 .sidebar h2{
-
     margin-bottom:5px;
-
 }
 
 .sidebar p{
-
     color:#aaa;
-
 }
 
 /* ===== Cards ===== */
 
 .sidebar-card{
-
     background:#1a1a1a;
-
     padding:15px;
-
     margin-top:15px;
-
     border-radius:12px;
-
     cursor:pointer;
-
     transition:.3s;
-
     border:1px solid transparent;
-
 }
 
 .sidebar-card:hover{
-
     transform:translateY(-3px);
-
     border-color:#c8ff00;
-
 }
 
 .sidebar-card h3{
-
     margin-bottom:8px;
-
     color:#fff;
-
 }
 
 .sidebar-card p{
-
     color:#bbb;
-
     font-size:14px;
-
 }
 
 /* ===== Meta ===== */
 
 .sidebar-meta{
-
     margin-top:12px;
-
     display:flex;
-
     justify-content:space-between;
-
     font-size:13px;
-
     color:#c8ff00;
+}
+
+@media(max-width:768px){
+
+.map-layout{
+    flex-direction:column;
+}
+
+.map-section{
+    width:100%;
+}
+
+.sidebar{
+    width:100%;
+}
 
 }
+

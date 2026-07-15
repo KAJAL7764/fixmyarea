@@ -1,7 +1,7 @@
 /* Hero Section - Complete Responsive CSS */
 
 .hero-section {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: #050505;
   padding: 80px 0;
   color: white;
@@ -32,9 +32,7 @@
   animation: fadeInRight 0.8s ease;
 }
 
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
+
 
 @keyframes fadeInLeft {
   from {
@@ -58,9 +56,7 @@
   }
 }
 
-/* ============================================================
-   LEFT SIDE CONTENT
-   ============================================================ */
+
 
 .tag {
   display: inline-block;
@@ -168,9 +164,9 @@
   font-weight: 400;
 }
 
-/* ============================================================
-   RIGHT SIDE - MAP CARD
-   ============================================================ */
+
+   /* RIGHT SIDE - MAP CARD */
+
 
 .map-card {
   width: 100%;
@@ -228,13 +224,74 @@
   }
 }
 
-.fake-map {
+/* .fake-map {
   height: 260px;
   background: #0c1a0f;
   position: relative;
   border-bottom: 1px solid #222;
+} */
+
+/* Dynamic Map Pins */
+
+.fake-map {
+  position: relative;
+  background: #0d2513;
+  height: 230px;
+  overflow: hidden;
 }
 
+.fake-map .pin {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Random positions */
+
+.pin-0{
+  top:35px;
+  left:90px;
+  background:#ffb11a;
+}
+
+.pin-1{
+  top:95px;
+  left:200px;
+  background:#5d9dff;
+}
+
+.pin-2{
+  top:145px;
+  left:265px;
+  background:#ffee00;
+}
+
+.pin-3{
+  top:55px;
+  right:70px;
+  background:#00d97e;
+}
+
+@keyframes pulse {
+
+  0%{
+    transform:scale(1);
+    box-shadow:0 0 0 0 rgba(192,255,0,.7);
+  }
+
+  70%{
+    transform:scale(1.15);
+    box-shadow:0 0 0 12px rgba(192,255,0,0);
+  }
+
+  100%{
+    transform:scale(1);
+    box-shadow:0 0 0 0 rgba(192,255,0,0);
+  }
+
+}
 .pin {
   width: 22px;
   height: 22px;

@@ -5,6 +5,8 @@ import {
   Popup,
   useMapEvents
 } from "react-leaflet";
+import "./MapView.css"
+
 
 function LocationMarker({
   selectedPosition,
@@ -24,6 +26,7 @@ useMapEvents({
 
   }
 });
+
 
   return (
     <Marker
@@ -47,19 +50,12 @@ const MapView = ({
 }) => {
 
   return (
-    <MapContainer
-      center={[
-        selectedPosition.lat,
-        selectedPosition.lng
-      ]}
+   <MapContainer
+  center={[selectedPosition.lat, selectedPosition.lng]}
+  zoom={13}
+  className="leaflet-map"
+>
 
-      zoom={13}
-
-      style={{
-        height: "100vh",
-        width: "100%"
-      }}
-    >
 
       <TileLayer
         attribution='&copy; OpenStreetMap'

@@ -15,12 +15,44 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true,
+      // required: true,
+      default: null,
     },
+    googleId: {
+  type: String,
+  default: null,
+},
+
+avatar: {
+  type: String,
+  default: "",
+},
     role: {
   type: String,
   enum: ["user", "admin"],
   default: "user",
+},
+isVerified: {
+  type: Boolean,
+  default: false,
+}, 
+verificationToken: {
+  type: String,
+  default: null,
+},
+
+verificationTokenExpires: {
+  type: Date,
+  default: null,
+},
+resetPasswordToken: {
+  type: String,
+  default: null,
+},
+
+resetPasswordExpires: {
+  type: Date,
+  default: null,
 },
   },
   { timestamps: true }

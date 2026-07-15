@@ -1,9 +1,8 @@
-
-
 import "./Navbar.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthModal from "../AuthModal/AuthModal";
+// import profile from "../../pages/Profile/Profile"
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] =
@@ -11,6 +10,7 @@ export default function Navbar() {
 
   const [showAuth, setShowAuth] =
     useState(false);
+    const [showMenu, setShowMenu] = useState(false);
 
   const token =
     localStorage.getItem("token");
@@ -27,14 +27,15 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
 
-        {/* Logo */}
-        <div className="logo-section">
-          <div className="logo-box"></div>
-
-          <h2 className="logo-text">
-            Fix<span>My</span>Area
-          </h2>
-        </div>
+       
+   <div className="logo-section">
+  <Link to="/" className="logo-link">
+    <div className="logo-box"></div>
+    <h2 className="logo-text">
+      Fix<span>My</span>Area
+    </h2>
+  </Link>
+</div>
 
         {/* Navigation Links */}
         <ul
@@ -85,11 +86,6 @@ export default function Navbar() {
               Leaderboard
             </Link>
           </li>
-<li>
-  <Link to="/dashboard">
-    Dashboard
-  </Link>
-</li>
 
 {user?.role === "admin" && (
   <li>
@@ -97,38 +93,102 @@ export default function Navbar() {
       Admin Panel
     </Link>
   </li>
+  
 )}
-          {/* <li>
-            <Link
-              to="/dashboard"
-              onClick={() =>
-                setMenuOpen(false)
-              }
-            >
-              Dashboard
-            </Link>
-          </li> */}
+<li className="mobile-only">
+  <Link
+    to="/report"
+    onClick={() => setMenuOpen(false)}
+  >
+    Report Issue
+  </Link>
+</li>
+
+{token && (
+  <>
+    <li className="mobile-only">
+      <Link
+        to="/dashboard"
+        onClick={() => setMenuOpen(false)}
+      >
+        Dashboard
+      </Link>
+    </li>
+
+    <li className="mobile-only">
+      <Link
+        to="/profile"
+        onClick={() => setMenuOpen(false)}
+      >
+        Profile
+      </Link>
+    </li>
+  </>
+)}
         </ul>
 
-        {/* Buttons */}
+{!token ? (
+  <button
+    className="signin-btn"
+    onClick={() => setShowAuth(true)}
+  >
+    Sign In
+  </button>
+) : (
+  <div className="profile-menu">
 
-        {!token ? (
-          <button
-            className="signin-btn"
-            onClick={() =>
-              setShowAuth(true)
-            }
-          >
-            Sign In
-          </button>
-        ) : (
-          <button
-            className="signin-btn"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        )}
+  <div
+  className="profile-trigger"
+  onClick={() => setShowMenu(!showMenu)}
+>
+
+  <div className="profile-avatar">
+    {user?.name?.charAt(0).toUpperCase()}
+  </div>
+
+
+</div>
+
+    {showMenu && (
+      <div className="profile-dropdown">
+
+        <p className="dropdown-name">
+          {user?.name}
+        </p>
+
+        <p className="dropdown-email">
+          {user?.email}
+        </p>
+
+        <hr />
+
+        <Link to="/profile" onClick={() => setShowMenu(false)}>
+        👤  My Profile
+        </Link>
+        <Link
+          to="/dashboard"
+          onClick={() => setShowMenu(false)}
+        >
+          📊 Dashboard
+        </Link>
+
+         <Link
+          to="/setting"
+          onClick={() => setShowMenu(false)}
+        >
+         ⚙️ Settings  (coming soon)
+ 
+        </Link>
+
+        <button onClick={handleLogout}>
+          Logout
+        </button>
+
+      </div>
+    )}
+
+  </div>
+)}
 
         <Link to="/report">
           <button className="report-btn">

@@ -33,3 +33,4 @@ client/dist/
 *.njsproj
 *.sln
 *.sw?
+firebase-service-account.json

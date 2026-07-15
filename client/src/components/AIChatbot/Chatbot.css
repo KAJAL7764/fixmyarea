@@ -1,0 +1,138 @@
+.chatbot-float {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 65px;
+  height: 65px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c8ff32, #c8ff32);
+  color: #111;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 10px 35px rgba(163,255,18,.4);
+  z-index: 9999;
+  transition: .3s;
+}
+
+.chatbot-float:hover{
+  transform: scale(1.08);
+}
+
+.chatbot-box{
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 380px;
+  height: 580px;
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  z-index:9999;
+}
+
+.chatbot-header{
+  height:70px;
+  background:#181818;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20px;
+  color:white;
+  font-weight:600;
+  font-size:18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.close-chat{
+  cursor:pointer;
+  transition:.25s;
+}
+
+.close-chat:hover{
+  color:#c8ff32;
+}
+
+.chatbot-body{
+  flex:1;
+  padding:20px;
+  overflow-y:auto;
+  background:#101010;
+}
+
+.bot-message{
+  background:#1b1b1b;
+  color:white;
+  width:max-content;
+  max-width:85%;
+  padding:14px 18px;
+  border-radius:16px;
+  margin-bottom:14px;
+  line-height:1.5;
+  font-size:15px;
+}
+
+.user-message{
+  margin-left:auto;
+  background:#c8ff32;
+  color:#111;
+}
+
+.chatbot-input{
+  height:75px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:15px;
+  background:#181818;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.chatbot-input input{
+  flex:1;
+  height:48px;
+  background:#232323;
+  color:white;
+  border:none;
+  outline:none;
+  border-radius:30px;
+  padding:0 18px;
+  font-size:15px;
+}
+
+.chatbot-input button{
+  width:48px;
+  height:48px;
+  border:none;
+  border-radius:50%;
+  background:#c8ff32;
+  color:#111;
+  cursor:pointer;
+  font-size:18px;
+  transition:.25s;
+}
+
+.chatbot-input button:hover{
+  transform:scale(1.08);
+}
+
+@media(max-width:500px){
+
+.chatbot-box{
+  width:100%;
+  height:100%;
+  right:0;
+  bottom:0;
+  border-radius:0;
+}
+
+.chatbot-float{
+  right:18px;
+  bottom:18px;
+}
+
+}

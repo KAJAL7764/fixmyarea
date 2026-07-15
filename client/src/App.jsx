@@ -1,7 +1,3 @@
-
-
-// export default App;
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -12,20 +8,25 @@ import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import LiveMap from "./pages/LiveMap/LiveMap";
 import Issues from "./pages/Issues/Issues";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AuthRequired from "./pages/AuthRequired/AuthRequired";
+import Report from "./pages/Report/Report";
+import IssueDetails
+from "./pages/IssueDetails/IssueDetails";
+import VerifyEmail from "./pages/VerifyEmail";
+import ResetPassword from "./pages/ResetPassword";
+import Chatbot from "./components/AIChatbot/Chatbot"
+import Profile from "./pages/Profile/Profile";
 
 // Home Components
 import Hero from "./components/Hero/Hero";
 import Ticker from "./components/Ticker/Ticker";
-import ProblemTypes from "./components/ProblemTypes/ProblemTypes";
 import HowItWorks from "./components/HowItWorks/HowItWorks";
+
 import ReportForm from "./components/ReportForm/ReportForm";
-import Stats from "./components/Stats/Stats";
 import Footer from "./components/Footer/Footer";
-import Report from "./pages/Report/Report";
-import IssueDetails
-from "./pages/IssueDetails/IssueDetails";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import AuthRequired from "./pages/AuthRequired/AuthRequired";
+import Donate from "./pages/Donate/Donate";
 
 
 
@@ -34,11 +35,9 @@ function Home() {
     <>
       <Hero />
       <Ticker />
-      <ProblemTypes />
       <HowItWorks />
       <ReportForm />
-      <Stats />
-      <Footer />
+     
     </>
   );
 }
@@ -46,13 +45,15 @@ function Home() {
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+   
+    <Navbar />
+  
 
       <Routes>
-        {/* Home */}
+       
         <Route path="/" element={<Home />} />
 
-        {/* Other Pages */}
+        
         <Route
   path="/dashboard"
   element={
@@ -82,8 +83,28 @@ function App() {
   path="/login-required"
   element={<AuthRequired />}
 />
+<Route path="/donate" element={<Donate />} />
+<Route
+  path="/verify-email/:token"
+  element={<VerifyEmail />}
+/>
+<Route
+  path="/reset-password/:token"
+  element={<ResetPassword />}
+/>
 
+<Route
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
       </Routes>
+         <Footer />
+       <Chatbot />
+     
     </BrowserRouter>
   );
 }

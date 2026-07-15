@@ -1,5 +1,5 @@
 .auth-page {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: #050505;
   display: flex;
   justify-content: center;
