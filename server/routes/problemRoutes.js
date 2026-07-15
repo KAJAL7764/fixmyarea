@@ -8,7 +8,7 @@ import {
   updateProblemStatus,
   deleteProblem,
   updateProblem,
-} from "../controllers/problemController.js";
+} from "../controllers/ProblemController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import upload from "../middleware/uploadMiddleware.js";
 import { isAdmin } from "../middleware/adminMiddleware.js";
