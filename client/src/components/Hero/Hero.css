@@ -410,6 +410,7 @@
 @media (min-width: 1200px) {
   .hero-container {
     width: 90%;
+    display: flex;
   }
 }
 
@@ -447,6 +448,7 @@
     flex-direction: column;
     gap: 50px;
     width: 90%;
+    display: flex;
   }
 
   .hero-left,
@@ -484,6 +486,7 @@
   .hero-container {
     width: 85%;
     gap: 40px;
+    display: flex;
   }
 
   .hero-title {
@@ -554,6 +557,7 @@
   .hero-container {
     width: 90%;
     gap: 30px;
+    display: flex;
   }
 
   .tag {
@@ -649,6 +653,7 @@
   .hero-container {
     width: 90%;
     gap: 24px;
+    display: flex;
   }
 
   .tag {
@@ -777,6 +782,7 @@
 
   .hero-container {
     width: 95%;
+    display: flex;
   }
 
   .tag {
